@@ -1,0 +1,66 @@
+{% extends 'projects/layout.html' %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+  <div class="circle--actions--bar">
+    <div class="bounds">
+      <div class="grid-100">
+        <input type="submit" value="Save Project" class="button button-primary">
+        <a class="button button-text" href="{% url 'home' %}">Discard</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bounds circle--page circle--article">
+    <div class="grid-70">
+      <div class="circle--article--body">
+        <div type="text" class="circle--input--h1" placeholder="Project Title">
+          Project Title:
+          {% csrf_token %}
+          {{ form.name }}
+        </div>
+        <div>
+          Desciption:
+          {{ form.description }}
+      </div>
+      </div>
+
+      <div class="circle--project--positions">
+        <h2>Positions</h2>
+
+        <ul class="circle--group--list circle--clone--list">
+          {{ position_formset.management_form }}
+          {% for position in position_formset %}
+          {{ position.id }}
+          <li>
+            <p>Name:</p>
+            {{ position.title }}
+            <p>Description:</p>
+            {{ position.description }}
+            <p>Skill:</p>
+            {{ position.skill }}
+            <a class="circle--clone--add">Add Position</a>
+            <a class="circle--clone--remove">Remove</a>
+          </li>
+          {% endfor %}
+        </ul>
+        <input type="submit" value="Save Project" class="button button-primary">
+
+      </div>
+    </div>
+
+    <div class="grid-25 grid-push-5">
+
+      <div class="circle--secondary--module">
+        <h3>Project Timeline</h3>
+        {{ form.timeline }}
+      </div>
+
+      <div class="circle--secondary--module">
+        <h3>Applicant Requirements</h3>
+        {{ form.requirements }}
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
