@@ -12,7 +12,7 @@
     <div class="bounds">
       <div class="grid-100">
         <a class="button" href="{% url 'projects:edit' project.id %}">Edit Project</a>
-        <a class="button button-text" href="{% url 'home' %}">Delete Project</a>
+        <a class="button button-text" href="{% url 'projects:delete' project.id %}">Delete Project</a>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
                 {% elif request.user in position.applicants.all %}
                   <a class="button button-primary button-inactive">Applied</a>
                 {% else %}
-                  <a class="button button-primary" href="{% url "projects:apply" pk=project.pk position_pk=position.pk %}">Apply</a>
+                  <a class="button button-primary" href="{% url 'projects:apply' pk=project.pk position_pk=position.pk %}">Apply</a>
                 {% endif %}
               {% endif %}
             </li>

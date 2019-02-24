@@ -30,14 +30,13 @@
       <h4>Project Needs</h4>
       <ul class="circle--filter--list">
         <li><a class="selected">All Needs</a></li>
-        <li><a>Android Developer</a></li>
-        <li><a>Designer</a></li>
-        <li><a>Java Developer</a></li>
-        <li><a>PHP Developer</a></li>
-        <li><a>Python Developer</a></li>
-        <li><a>Rails Developer</a></li>
-        <li><a>WordPress Developer</a></li>
-        <li><a>iOS Developer</a></li>
+          {% for project in projects %}
+            {% for position in project.positions.all %}
+              {% if position.position_filled != True %}
+                <li><a href={% url 'projects:project' pk=project.pk %}>{{ position.skill }}</a></li>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
       </ul>
     </div>
   </div>
@@ -57,7 +56,11 @@
             <h3>{{ project.name }}</h3>
           </td>
           <td class="circle--cell--right">
-            <span class="secondary-label">Rails Developer</span>
+            {% for position in project.positions.all %}
+            {% if position.position_filled != True %}
+              <p class="secondary-label">{{ position.skill }}</p>
+            {% endif %}
+            {% endfor %}
           </td>
         </tr>
         {% endfor %}

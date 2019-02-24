@@ -1,0 +1,17 @@
+{% extends "accounts/layout.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+
+<div class="bounds circle--page">
+  <div class="circle--page--header grid-100">
+    <h2>Notifications</h2>
+    <ul>
+      {% for notification in notifications %}
+        <li>{{ notification.message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}

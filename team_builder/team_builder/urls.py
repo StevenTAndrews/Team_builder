@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include(('projects.urls', 'projects'), namespace='projects')),
     path('profile/', include(('accounts.urls', 'accounts'), namespace='accounts')),
+    path('search/', views.search_term, name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

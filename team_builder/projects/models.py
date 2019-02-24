@@ -20,7 +20,7 @@ class Position(models.Model):
     RAILS = "Rails"
     WORDPRESS = "Wordpress"
     iOS = "iOS"
-    SKILLES_CHOICES = (
+    SKILLS_CHOICE = (
         (ANDROID, "Android Developer"),
         (DESIGN, "Designer"),
         (JAVA, "Java Developer"),
@@ -40,7 +40,7 @@ class Position(models.Model):
     description = models.TextField(max_length=500, blank=True)
     skill = models.CharField(
         max_length=20,
-        choices=SKILLES_CHOICES,
+        choices=SKILLS_CHOICE,
         default="",
         blank=True)
     position_filled = models.BooleanField(default=False, blank=True)
