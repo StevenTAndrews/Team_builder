@@ -179,9 +179,12 @@ def new_application_list(request):
 def accept_application(request, pk):
     '''Accept an application view'''
     application = get_object_or_404(models.Application, pk=pk)
+    position = models.Position.objects.get(application__id=application.id)
     application.status = "accept"
     application.position.position_filled = True
     application.save()
+    position.position_filled = True
+    position.save()
     models.Notification.objects.create(
         user=application.applicant,
         application=application,
