@@ -10,7 +10,7 @@ from django.views import generic
 from . import models
 from . import forms
 
-@login_required
+@login_required(login_url='accounts/signin/')
 def project_detail(request, pk):
     '''Show project detail'''
     project = get_object_or_404(models.Project, pk=pk)
